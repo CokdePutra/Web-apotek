@@ -1,0 +1,148 @@
+@import url("https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,300;0,400;0,500;1,400&display=swap");
+/* GLOBAL */
+li {
+  list-style-type: none;
+}
+
+a {
+  text-decoration: none;
+}
+
+@keyframes navLinksFade {
+  from {
+    opacity: 0;
+    margin-left: 0px;
+  }
+  to {
+    opacity: 1;
+    margin-left: 30px;
+  }
+}
+body {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Ubuntu", sans-serif;
+  background: #decdc3;
+}
+body .header {
+  position: fixed;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #214252;
+  padding: 10px 5%;
+  z-index: 2;
+}
+body .header .left-zone {
+  display: flex;
+  align-items: center;
+}
+body .header .left-zone #toggle {
+  cursor: pointer;
+}
+body .header .left-zone #toggle.on .one {
+  -webkit-transform: rotate(-45deg) translate(-5px, 5px);
+  -moz-transform: rotate(-45deg) translate(-5px, 5px);
+  -ms-transform: rotate(-45deg) translate(-5px, 5px);
+  -o-transform: rotate(-45deg) translate(-5px, 5px);
+  transform: rotate(-45deg) translate(-5px, 5px);
+}
+body .header .left-zone #toggle.on .two {
+  opacity: 0;
+}
+body .header .left-zone #toggle.on .three {
+  -webkit-transform: rotate(45deg) translate(-6px, -7px);
+  -moz-transform: rotate(45deg) translate(-6px, -7px);
+  -ms-transform: rotate(45deg) translate(-6px, -7px);
+  -o-transform: rotate(45deg) translate(-6px, -7px);
+  transform: rotate(45deg) translate(-6px, -7px);
+}
+body .header .left-zone #toggle .bar {
+  -webkit-transition: all 0.3s;
+  -moz-transition: all 0.3s;
+  -ms-transition: all 0.3s;
+  -o-transition: all 0.3s;
+  transition: all 0.3s;
+  display: block;
+  width: 30px;
+  height: 5px;
+  margin: 6px 0;
+  background-color: white;
+}
+body .header .left-zone .logo a {
+  padding-left: 10px;
+  font-size: 20px;
+  font-weight: 500;
+  color: white;
+}
+body .header .search-input {
+  width: 100%;
+  max-width: 350px;
+  margin-left: 20px;
+  margin-right: 20px;
+}
+body .header .search-input .search {
+  width: 100%;
+  height: 30px;
+}
+body .header .right-zone {
+  display: flex;
+  align-items: center;
+}
+body .header .right-zone .notification i {
+  font-size: 25px;
+  color: white;
+  padding-right: 20px;
+}
+body .header .right-zone .user-avatar .user-img {
+  width: 50px;
+  border-radius: 50%;
+}
+body #side-nav {
+  width: 250px;
+  height: 100%;
+  overflow-y: scroll;
+  display: flex;
+  flex-direction: column;
+  position: fixed;
+  top: 0;
+  background: #f05454;
+  transition: all 0.5s;
+  margin-top: 70px;
+  z-index: 1;
+}
+body #side-nav.active {
+  width: 80px;
+  transition: all 0.5s;
+}
+body #side-nav.active .nav-list span {
+  display: none;
+}
+body #side-nav::-webkit-scrollbar {
+  width: 10px;
+}
+body #side-nav::-webkit-scrollbar-thumb {
+  background: red;
+}
+body #side-nav .nav-list .nav-link {
+  display: flex;
+  align-items: center;
+  color: white;
+  font-size: 20px;
+  padding: 10px 0;
+}
+body #side-nav .nav-list .nav-link:hover {
+  background: #af2d2d;
+}
+body #side-nav .nav-list .nav-link i {
+  width: 50px;
+  font-size: 40px;
+  margin-left: 20px;
+}
+body #side-nav .nav-list .nav-link span {
+  animation: navLinksFade 0.8s forwards;
+  margin-left: 30px;
+}
