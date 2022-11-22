@@ -13,6 +13,8 @@ if(!isset($_SESSION['username'])){
   <title>Tabel Pelanggan</title>
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous"><link rel="stylesheet" href="../Sidebar/style.css">
   <link rel="stylesheet" href="../dashboard.css">
+  <link rel="stylesheet" href="view.css">
+  <script src="https://kit.fontawesome.com/2470e0aebf.js" crossorigin="anonymous"></script>
 
   <style>
         @media print {
@@ -132,29 +134,31 @@ if(!isset($_SESSION['username'])){
 
   <div class="row">
   <div class="column">
-  <table border = "2" cellspacing = "0" cellpadding = "10">
+  <table cellspacing = "0" cellpadding = "10" class="viewtabel">
         <thead>
-            <tr>
+            <tr class="headview">
             <th>ID Pelanggan</th>
                 <th>Nama Lengkap</th>
                 <th>Alamat</th>
                 <th>Telpon</th>
                 <th>Usia</th>
                 <th>Bukti Foto Resep</th>
-                <th class="print"></th>
                 <?php
                 if(@$_SESSION['leveluser'] == 'admin'){
-                ?>
-                <th class="print"><a href="../tambah/insertpelanggan.php"><button type="submit" class="btn btn-success">INSERT</button></a></th>
-                <?php
-                }else{
-                    
-                }
-                ?>
+                  ?>
+
+
             </tr>
             <div class="d-flex justify-content-around">
             <div class="form-floating col-1">
-            <a href=""><button type="submit" class="btn btn-secondary print" onclick="window.print()">PRINT</button></a>
+            <a href="../tambah/insertpelanggan.php" class="plusbutt print"><i class="fa-solid fa-square-plus"></i></a>
+            <?php
+            
+          }else{
+                    
+          }
+          ?>
+            <a href="" class="printbutt print" onclick="window.print()"><i class="fa-sharp fa-solid fa-print"></i></a>
             </div>
             </div>
             <br>
@@ -164,17 +168,40 @@ if(!isset($_SESSION['username'])){
             $hasil = mysqli_query($koneksi, $query);
             while($row = mysqli_fetch_assoc($hasil)){
             ?>
-            <tr>
-            <td><?php echo $row ['idpelanggan'];?></td>
-                <td><?php echo $row ['namalengkap'];?></td>
-                <td><?php echo $row ['alamat'];?></td>
-                <td><?php echo $row ['telp'];?></td>
-                <td><?php echo $row ['usia'];?></td>
-                <td style="text-align: center;"><img src="../pict/<?php echo $row ['buktifotoresep']; ?>" style="width: 120px;"></td>
-                    <?php
+            <tr >
+                <td>
+                  <div class="tampilan">     
+                <?php echo $row ['idpelanggan'];?>
+            </div>
+              </td>
+                <td>
+                  <div class="tampilan">     
+                <?php echo $row ['namalengkap'];?>
+            </div>
+              </td>
+                <td>
+                  <div class="tampilan">     
+                <?php echo $row ['alamat'];?>
+            </div>
+              </td>
+                <td>
+                  <div class="tampilan">     
+                <?php echo $row ['telp'];?>
+            </div>
+              </td>
+                <td>
+                  <div class="tampilan">     
+                <?php echo $row ['usia'];?>
+            </div>
+              </td>
+                <td style="text-align: center;">
+                <div style="float:left; width:150px;">
+                <img src="../pict/<?php echo $row ['buktifotoresep']; ?>" style="width: 120px;">
+                </div>
+                  <div style="float:right;">
+                  <?php
                     if(@$_SESSION['leveluser'] == 'admin'){
                     ?>
-                <td class="print">
                     <?php
                     $id = $row['idpelanggan'];
                     $querydelete = "SELECT idpelanggan FROM tb_transaksi INNER JOIN tb_pelanggan USING(idpelanggan)
@@ -183,21 +210,19 @@ if(!isset($_SESSION['username'])){
                     $cek = mysqli_num_rows($hasildelete);
                     if($cek == 0){
                     ?>
-                    <a href="../delete/deletepelanggan.php?idpelanggan=<?php echo $row['idpelanggan'];?>"><button type="submit" class="btn btn-danger" onclick="return confirm('Anda yakin mau menghapus data ini ?')">DELETE</button></a>
-                    <?php
-                    }else{
-                    ?>
-                        <a><button type="submit" class="btn-btn-light" disabled>DELETE</button></a>
+                    <a class="trashbutt" href="../delete/deletedetail_transaksi.php?iddetailtransaksi=<?php echo $row['iddetailtransaksi'];?>" onclick="return confirm('Anda yakin mau menghapus data ini ?')"><i class="fa-sharp fa-solid fa-trash print"></i></a>
                     <?php
                     }
                     ?>
+                    <a class="viewbutt" href="../update/updatepelanggan.php?idpelanggan=<?php echo $row['idpelanggan'];?>"><i class="fa-solid fa-pen-to-square print"></i></a> 
                 </td>
-                <td class="print"><a href="../update/updatepelanggan.php?idpelanggan=<?php echo $row['idpelanggan'];?>"><button type="submit" class="btn btn-primary">UPDATE</button></a></td>
                     <?php
                     }else{
-
+                      ?> 
+                      <?php
                     }
-                    ?>     
+                    ?>    
+                  </div>  
             </tr>
             <?php
             }

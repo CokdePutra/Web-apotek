@@ -1,0 +1,40 @@
+.viewtabel tr {
+    background-color: rgb(207,245,231);
+}
+
+.viewtabel {
+    width: 1100px;
+}
+
+.viewtabel .headview {
+    background-color: rgb(90,193,189);
+    text-align: left;
+}
+
+tr:nth-child(even) {
+    background-color: rgb(160,228,203);
+}
+
+.trashbutt {
+    text-decoration: none;
+    color:rgb(33,66,82);
+}
+
+.viewbutt {
+    text-decoration: none;
+    color:rgb(33,66,82);
+}
+
+.printbutt {
+    text-decoration: none;
+    color:rgb(33,66,82);
+}
+
+.plusbutt {
+    text-decoration: none;
+    color:rgb(33,66,82);
+}
+
+.tampilan {
+    margin:10px;
+}

@@ -13,6 +13,8 @@ if(!isset($_SESSION['username'])){
   <title>Detail Transaksi</title>
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous"><link rel="stylesheet" href="../Sidebar/style.css">
   <link rel="stylesheet" href="../dashboard.css">
+  <link rel="stylesheet" href="view.css">
+  <script src="https://kit.fontawesome.com/2470e0aebf.js" crossorigin="anonymous"></script>
 
   <style>
         @media print {
@@ -132,21 +134,18 @@ if(!isset($_SESSION['username'])){
 
   <div class="row">
   <div class="column">
-  <table border = "2" cellspacing = "0" cellpadding = "10">
+  <table cellspacing = "0" cellpadding = "10" class="viewtabel">
         <thead>
-        <tr>
+        <tr class="headview">
                 <th>ID Detail Transaksi</th>
                 <th>ID Transaksi</th>
                 <th>Nama Obat</th>
                 <th>Jumlah</th>
                 <th>Harga Satuan</th>
                 <th>Total Harga</th>
-                <th class="print"></th>
                     <?php
                     if(@$_SESSION['leveluser'] == 'admin'){
-                    ?>
-                <th class="print"><a href="../tambah/insertdetail_transaksi.php"><button type="submit" class="btn btn-success">INSERT</button></a></th>
-                    <?php
+
                     }else{
                         
                     }
@@ -154,7 +153,8 @@ if(!isset($_SESSION['username'])){
             </tr>
             <div class="d-flex justify-content-around">
             <div class="form-floating col-1">
-            <a href=""><button type="submit" class="btn btn-secondary print" onclick="window.print()">PRINT</button></a>
+            <a href="" class="printbutt print" onclick="window.print()"><i class="fa-sharp fa-solid fa-print"></i></a>
+            <a href="../tambah/inserttransaksi.php" class="plusbutt print"><i class="fa-solid fa-square-plus"></i></a>
             </div>
             </div>
             <br>
@@ -165,17 +165,43 @@ if(!isset($_SESSION['username'])){
             while($row = mysqli_fetch_assoc($hasil)){
             ?>
             <tr>
-                <td><?php echo $row ['iddetailtransaksi']?></td>
-                <td><?php echo $row ['idtransaksi']?></td>
-                <td><?php echo $row ['namaobat']?></td>
-                <td><?php echo $row ['jumlah']?></td>
-                <td><?php echo $row ['hargasatuan']?></td>
-                <td><?php echo $row ['totalharga']?></td>
+                <td>
+                  <div class="tampilan">   
+                <?php echo $row ['iddetailtransaksi']?>
+            </div>
+              </td>
+                <td>
+                  <div class="tampilan">   
+                <?php echo $row ['idtransaksi']?>
+            </div>
+              </td>
+                <td>
+                  <div class="tampilan">   
+                <?php echo $row ['namaobat']?>
+            </div>
+              </td>
+                <td>
+                  <div class="tampilan">   
+                <?php echo $row ['jumlah']?>
+            </div>
+              </td>
+                <td>
+                  <div class="tampilan">   
+                <?php echo $row ['hargasatuan']?>
+            </div>
+              </td>
+                <td>
+                  <div style="float:left; width:150px;">
+                  <?php echo $row ['totalharga']?>
+                  </div>
+                  <div style="float:right;">
+                  <a class="trashbutt" href="../delete/deletedetail_transaksi.php?iddetailtransaksi=<?php echo $row['iddetailtransaksi'];?>" onclick="return confirm('Anda yakin mau menghapus data ini ?')"><i class="fa-sharp fa-solid fa-trash print"></i></a>
+                  <a class="viewbutt" href="../update/updatedetail_transaksi.php?iddetailtransaksi=<?php echo $row['iddetailtransaksi'];?>?>"><i class="fa-solid fa-pen-to-square"></i></a>
+                  </div>
+                </td>
                 <?php
                 if(@$_SESSION['leveluser'] == 'admin'){
                 ?>
-                <td class="print"><a href="../delete/deletedetail_transaksi.php?iddetailtransaksi=<?php echo $row['iddetailtransaksi'];?>"><button type="submit" class="btn btn-danger" onclick="return confirm('Anda yakin mau menghapus data ini ?')">DELETE</button></a></td>
-                <td class="print"><a href="../update/updatedetail_transaksi.php?iddetailtransaksi=<?php echo $row['iddetailtransaksi'];?>"><button type="submit" class="btn btn-primary">UPDATE</button></a></td>
                 <?php
                 }else{
                     

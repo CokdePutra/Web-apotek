@@ -18,6 +18,8 @@ else{
   <title>Tabel Supplier</title>
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous"><link rel="stylesheet" href="../Sidebar/style.css">
   <link rel="stylesheet" href="../dashboard.css">
+  <link rel="stylesheet" href="view.css">
+  <script src="https://kit.fontawesome.com/2470e0aebf.js" crossorigin="anonymous"></script>
 
   <style>
         @media print {
@@ -137,18 +139,17 @@ else{
 
   <div class="row">
   <div class="column">
-  <table border = "2" cellspacing = "0" cellpadding = "10">
+  <table cellspacing = "0" cellpadding = "10" class="viewtabel">
         <thead>
-            <tr>
+            <tr class="headview">
                 <th>ID Supplier</th>
                 <th>Perusahaan</th>
                 <th>Keterangan</th>
-                <th class="print"></th>
-                <th class="print"><a href="../tambah/insertsupplier.php"><button type="submit" class="btn btn-success">INSERT</button></a></th>
             </tr>
             <div class="d-flex justify-content-around">
             <div class="form-floating col-1">
-            <a href=""><button type="submit" class="btn btn-secondary print" onclick="window.print()">PRINT</button></a>
+            <a href="" class="printbutt print" onclick="window.print()"><i class="fa-sharp fa-solid fa-print"></i></a>
+            <a href="../tambah/insertsupplier.php" class="plusbutt print"><i class="fa-solid fa-square-plus print"></i></a>
             </div>
             </div>
             <br>
@@ -159,11 +160,22 @@ else{
             while($row = mysqli_fetch_assoc($hasil)){
             ?>
             <tr>
-                <td><?php echo $row ['idsupplier']?></td>
-                <td><?php echo $row ['perusahaan']?></td>
-                <td><?php echo $row ['keterangan']?></td>
-                <td class="print">
-                    <?php
+                <td>
+                  <div class="tampilan">     
+                <?php echo $row ['idsupplier']?>
+            </div>
+              </td>
+                <td>
+                  <div class="tampilan">     
+                <?php echo $row ['perusahaan']?>
+            </div>
+              </td>
+                <td>
+                <div style="float:left; width:150px;">
+                  <?php echo $row ['keterangan']?>
+                  </div>
+                  <div style="float:right;">
+                  <?php
                     $id = $row['idsupplier'];
                     $querydelete = "SELECT idsupplier FROM tb_obat INNER JOIN tb_supplier USING(idsupplier)
                     WHERE idsupplier='$id'";
@@ -171,16 +183,15 @@ else{
                     $cek = mysqli_num_rows($hasildelete);
                     if($cek == 0){
                     ?>
-                    <a href="../delete/deletesupplier.php?idsupplier=<?php echo $row['idsupplier'];?>"><button type="submit" class="btn btn-danger" onclick="return confirm('Anda yakin mau menghapus data ini ?')">DELETE</button></a>
-                    <?php
+                  <a class="trashbutt" href="../delete/deletesupplier.php?idsupplier=<?php echo $row['idsupplier'];?>" onclick="return confirm('Anda yakin mau menghapus data ini ?')"><i class="fa-sharp fa-solid fa-trash print"></i></a>
+                  <?php
                     }else{
-                    ?>
-                        <a><button type="submit" class="btn-btn-light" disabled>DELETE</button></a>
-                    <?php
+
                     }
                     ?>
+                  <a class="viewbutt" href="../update/updatesupplier.php?idsupplier=<?php echo $row['idsupplier'];?>"><i class="fa-solid fa-pen-to-square print"></i></a>
+                  </div>
                 </td>
-                <td class="print"><a href="../update/updatesupplier.php?idsupplier=<?php echo $row['idsupplier'];?>"><button type="submit" class="btn btn-primary">UPDATE</button></a></td>
             </tr>
             <?php
             }

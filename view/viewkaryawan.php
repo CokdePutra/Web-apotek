@@ -18,6 +18,8 @@ else{
   <title>Tabel Karyawan</title>
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous"><link rel="stylesheet" href="../Sidebar/style.css">
   <link rel="stylesheet" href="../dashboard.css">
+  <link rel="stylesheet" href="view.css">
+  <script src="https://kit.fontawesome.com/2470e0aebf.js" crossorigin="anonymous"></script>
 
   <style>
     @media print {
@@ -138,19 +140,18 @@ else{
 
   <div class="row">
   <div class="column">
-  <table border = "2" cellspacing = "0" cellpadding = "10">
+  <table cellspacing = "0" cellpadding = "10" class="viewtabel">
         <thead>
-            <tr>
+            <tr class="headview">
                 <th>ID Karyawan</th>
                 <th>Nama Karyawan</th>
                 <th>Alamat</th>
                 <th>Nomor Telepon</th>
-                <th class="print"></th>
-                <th class="print"><a href="../tambah/insertkaryawan.php"><button type="submit" class="btn btn-success">INSERT</button></a></th>
             </tr>
             <div class="d-flex justify-content-around">
             <div class="form-floating col-1">
-            <a href=""><button type="submit" class="btn btn-secondary print" onclick="window.print()">PRINT</button></a>
+            <a href="" class="printbutt print" onclick="window.print()"><i class="fa-sharp fa-solid fa-print"></i></a>
+            <a href="../tambah/insertkaryawan.php" class="plusbutt print"><i class="fa-solid fa-square-plus"></i></a>
             </div>
             </div>
             <br>
@@ -161,15 +162,30 @@ else{
             while($row = mysqli_fetch_assoc($hasil)){
             ?>
             <tr>
-                <td><?php echo $row ['idkaryawan']?></td>
-                <td><?php echo $row ['namakaryawan']?></td>
-                <td><?php echo $row ['alamat']?></td>
-                <td><?php echo $row ['telp']?></td>
-                <td class="print"><a href="../delete/deletekaryawan.php?idkaryawan=<?php echo $row['idkaryawan'];?>"><button type="submit" class="btn btn-danger" onclick="return confirm('Anda yakin mau menghapus data ini ?')">DELETE</button></a></td>
-                <td class="print"><a href="../update/updatekaryawan.php?idkaryawan=<?php echo $row['idkaryawan'];?>"><button type="submit" class="btn btn-primary">UPDATE</button></a></td>
-                
-                
-                
+                <td>
+                  <div class="tampilan">     
+                <?php echo $row ['idkaryawan']?>
+            </div>
+              </td>
+                <td>
+                  <div class="tampilan">     
+                <?php echo $row ['namakaryawan']?>
+            </div>
+              </td>
+                <td>
+                  <div class="tampilan">     
+                <?php echo $row ['alamat']?>
+            </div>
+              </td>
+                <td>
+                <div style="float:left; width:150px;">
+                <?php echo $row ['telp']?>
+                </div>
+                  <div style="float:right;">
+                  <a class="trashbutt" href="../delete/deletekaryawan.php?idkaryawan=<?php echo $row['idkaryawan'];?>" onclick="return confirm('Anda yakin mau menghapus data ini ?')"><i class="fa-sharp fa-solid fa-trash print"></i></a>
+                  <a class="viewbutt" href="../update/updatekaryawan.php?idkaryawan=<?php echo $row['idkaryawan'];?>?>"><i class="fa-solid fa-pen-to-square print"></i></a>
+                  </div>
+              </td> 
             </tr>
             <?php
             }

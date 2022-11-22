@@ -13,6 +13,8 @@ if(!isset($_SESSION['username'])){
   <title>Tabel Transaksi</title>
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous"><link rel="stylesheet" href="../Sidebar/style.css">
   <link rel="stylesheet" href="../dashboard.css">
+  <link rel="stylesheet" href="view.css">
+  <script src="https://kit.fontawesome.com/2470e0aebf.js" crossorigin="anonymous"></script>
 
   <style>
         @media print {
@@ -135,9 +137,9 @@ if(!isset($_SESSION['username'])){
 
   <div class="row">
   <div class="column">
-  <table border = "2" cellspacing = "0" cellpadding = "10">
+  <table cellspacing = "0" cellpadding = "10" class="viewtabel">
         <thead>
-        <tr>
+        <tr class="headview">
                 <th>ID Transaksi</th>
                 <th>Nama Pelanggan</th>
                 <th>Nama Karyawan</th>
@@ -146,12 +148,9 @@ if(!isset($_SESSION['username'])){
                 <th>Total Bayar</th>
                 <th>Bayar</th>
                 <th>Kembalian</th>
-                <th class="print"></th>
                     <?php
                     if(@$_SESSION['leveluser'] == 'admin' || 'karyawan'){
-                    ?>
-                <th class="print"><a href="../tambah/inserttransaksi.php"><button type="submit" class="btn btn-success">INSERT</button></a></th>
-                    <?php
+
                     }else{
                         
                     }
@@ -159,7 +158,8 @@ if(!isset($_SESSION['username'])){
             </tr>
             <div class="d-flex justify-content-around">
             <div class="form-floating col-1">
-            <a href=""><button type="submit" class="btn btn-secondary print" onclick="window.print()">PRINT</button></a>
+            <a href="" class="printbutt print" onclick="window.print()"><i class="fa-sharp fa-solid fa-print"></i></a>
+            <a href="../tambah/inserttransaksi.php" class="plusbutt print"><i class="fa-solid fa-square-plus"></i></a>
             </div>
             </div>
             <br>
@@ -171,44 +171,50 @@ if(!isset($_SESSION['username'])){
               
             ?>
             <tr>
-                <td><?php echo $row ['idtransaksi']?></td>
-                <td><?php echo $row ['namalengkap']?></td>
-                <td><?php echo $row ['namakaryawan']?></td>
-                <td><?php echo $row ['tgltransaksi']?></td>
-                <td><?php echo $row ['kategoripelanggan']?></td>
-                <td><?php echo number_format($row['totalbayar'],0,',','.');?></td>
-                <td><?php echo number_format($row['bayar'],0,',','.');?></td>
-                <td><?php echo number_format($row['kembali'],0,',','.');?></td>
-                    <?php
-                    if(@$_SESSION['leveluser'] == 'admin' || 'karyawan'){
-                    ?>
-                <td class="print">
-                    <?php
-                    $id = $row['idtransaksi'];
-                    $querydelete = "SELECT idtransaksi FROM tb_detail_transaksi INNER JOIN tb_transaksi USING(idtransaksi)
-                    WHERE idtransaksi='$id'";
-                    $hasildelete = mysqli_query($koneksi,$querydelete);
-                    $cek = mysqli_num_rows($hasildelete);
-                    if($cek == 0){
-                    ?>
-                    <a href="../delete/deletetransaksi.php?idtransaksi=<?php echo $row['idtransaksi'];?>"><button type="submit" class="btn btn-danger" onclick="return confirm('Anda yakin mau menghapus data ini ?')">DELETE</button></a>
-                    <!-- diatas ni sebenernya ga guna yaa ingetttt
-                         diatas tu cuma codingan pas data belum didelete di detail transaksi -->
-                    <?php
-                    }else{
-                    ?>
-                        <a href="../delete/deletetransaksi.php?idtransaksi=<?php echo $row['idtransaksi'];?>"><button type="submit" class="btn-btn-light" onclick="return confirm('Anda yakin mau menghapus data ini ?')">DELETE</button></a>
-                        <!-- ingetttt codingan delete yang asli cuma 1 barisss -->
-                    <?php
-                    }
-                    ?>
+                <td>
+                  <div class="tampilan">  
+                <?php echo $row ['idtransaksi']?>
+            </div>
+              </td>
+                <td>
+                  <div class="tampilan">  
+                <?php echo $row ['namalengkap']?>
+            </div>
+              </td>
+                <td>
+                  <div class="tampilan">  
+                <?php echo $row ['namakaryawan']?>
+            </div>
+              </td>
+                <td>
+                  <div class="tampilan">  
+                <?php echo $row ['tgltransaksi']?>
+            </div>
+              </td>
+                <td>
+                  <div class="tampilan">  
+                <?php echo $row ['kategoripelanggan']?>
+            </div>
+              </td>
+                <td>
+                  <div class="tampilan">  
+                <?php echo number_format($row['totalbayar'],0,',','.');?>
+            </div>
+              </td>
+                <td>
+                  <div class="tampilan">  
+                <?php echo number_format($row['bayar'],0,',','.');?>
+            </div>
+              </td>
+                <td>
+                  <div style="float:left; margin-top:10px; margin-bottom:10px; width:150px;">
+                    <?php echo number_format($row['kembali'],0,',','.');?>
+                  </div>
+                  <div style="float:right; margin-top:10px; margin-bottom:10px;">
+                  <a class="trashbutt" href="../delete/deletetransaksi.php?idtransaksi=<?php echo $row['idtransaksi'];?>" onclick="return confirm('Anda yakin mau menghapus data ini ?')"><i class="fa-sharp fa-solid fa-trash print"></i></a>
+                  <a class="viewbutt" href="../tambah/insertdetail_transaksi.php?idtransaksi=<?php echo $row['idtransaksi'];?>"><i class="fa-sharp fa-solid fa-eye print print"></i></a>
+                  </div>
                 </td>
-                <td class="print"><a href="../tambah/insertdetail_transaksi.php?idtransaksi=<?php echo $row['idtransaksi'];?>"><button type="submit" class="btn btn-primary">Lihat Detail Transaksi</button></a></td>
-                    <?php
-                    }else{
-
-                    }
-                    ?> 
             </tr>
             <?php
             }
