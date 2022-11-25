@@ -115,7 +115,7 @@ a {
   flex-direction: column;
   position: fixed;
   top: 0;
-  background: black;
+  background: rgb(59, 59, 59);
   transition: all 0.5s;
   margin-top: 70px;
   z-index: 1;

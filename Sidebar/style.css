@@ -19,6 +19,7 @@ a {
   }
 }
 body {
+  animation: navLinksFade 0.8s forwards;
   margin: 0;
   padding: 0;
   box-sizing: border-box;
