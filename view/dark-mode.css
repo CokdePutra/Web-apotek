@@ -71,7 +71,7 @@ a {
   width: 30px;
   height: 5px;
   margin: 6px 0;
-  background-color: black;
+  background-color: white;
 }
 .dark-mode .header .left-zone .logo a {
   padding-left: 10px;
@@ -100,7 +100,7 @@ a {
 }
 .dark-mode .header .right-zone .notification i {
   font-size: 25px;
-  color: rgb(0, 0, 0);
+  color: white;
   padding-right: 20px;
 }
 .dark-mode .header .right-zone .user-avatar .user-img {
