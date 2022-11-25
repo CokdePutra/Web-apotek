@@ -19,6 +19,8 @@ else{
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous"><link rel="stylesheet" href="../Sidebar/style.css">
   <link rel="stylesheet" href="../dashboard.css">
   <link rel="stylesheet" href="view.css">
+  <link rel="stylesheet" href="switch.css">
+  <link rel="stylesheet" href="dark-mode.css">
   <script src="https://kit.fontawesome.com/2470e0aebf.js" crossorigin="anonymous"></script>
 
   <style>
@@ -105,6 +107,12 @@ else{
     <div class="user-avatar">
       <a href="../login/ubah_data.php?username=<?php echo $_SESSION['username'];?>"><img src="../img/user.png" alt="" class="user-img"></a>
     </div>
+    <div class="switch" style="margin-left:20px;">
+        <label class="switch">
+          <input type="checkbox" style="width:40px;">
+          <span class="slider" onclick="myFunction()"></span>
+        </label>
+    </div>
   </div>
 </header>
 <nav id="side-nav">
@@ -131,6 +139,9 @@ else{
       </li>
       <li><a href="../login/registration.php" class="nav-link"><i class="fa fa-user" aria-hidden="true"></i><span>NEW ACC</span></a></li>
       <li><a href="../login/logout.php" class="nav-link"><i class="fa fa-sign-out" aria-hidden="true"></i><span>LOGOUT</span></a></li>
+      <li><a href=""><span>
+
+      </span></a></li>
     </ul>
   </div>
 </nav>
@@ -219,6 +230,13 @@ else{
         </tbody>
     </table>
   </div>
+
+  <script>
+    function myFunction() {
+   var element = document.body;
+   element.classList.toggle("dark-mode");
+    }
+  </script>
 
 </body>
 </html>

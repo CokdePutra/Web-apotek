@@ -18,23 +18,74 @@ tr:nth-child(even) {
 .trashbutt {
     text-decoration: none;
     color:rgb(33,66,82);
+    font-size: 20px;
 }
 
 .viewbutt {
     text-decoration: none;
     color:rgb(33,66,82);
+    font-size: 20px;
 }
 
 .printbutt {
     text-decoration: none;
     color:rgb(33,66,82);
+    font-size: 40px;
 }
 
 .plusbutt {
     text-decoration: none;
     color:rgb(33,66,82);
+    font-size: 40px;
 }
 
 .tampilan {
+    margin:10px;
+}
+
+/* ini tampilan dark-mode */
+
+.dark-mode .viewtabel tr {
+    background-color: rgb(207,245,231);
+}
+
+.dark-mode .viewtabel {
+    width: 1100px;
+}
+
+.dark-mode .viewtabel .headview {
+    background-color: rgb(90,193,189);
+    text-align: left;
+}
+
+.dark-modetr:nth-child(even) {
+    background-color: rgb(160,228,203);
+}
+
+.dark-mode .trashbutt {
+    text-decoration: none;
+    color:rgb(33,66,82);
+    font-size: 20px;
+}
+
+.dark-mode .viewbutt {
+    text-decoration: none;
+    color:rgb(33,66,82);
+    font-size: 20px;
+}
+
+.dark-mode .printbutt {
+    text-decoration: none;
+    color:white;
+    font-size: 40px;
+}
+
+.dark-mode .plusbutt {
+    text-decoration: none;
+    color:white;
+    font-size: 40px;
+}
+
+.dark-mode .tampilan {
     margin:10px;
 }
