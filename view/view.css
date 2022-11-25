@@ -58,7 +58,7 @@ tr:nth-child(even) {
     text-align: left;
 }
 
-.dark-modetr:nth-child(even) {
+.dark-mode tr:nth-child(even) {
     background-color: rgb(160,228,203);
 }
 
