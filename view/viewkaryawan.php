@@ -203,6 +203,9 @@ else{
     </table>
   </div>
 
+  <?php
+  
+  ?>
   <script>
     function myFunction() {
    var element = document.body;

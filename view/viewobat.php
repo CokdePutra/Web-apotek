@@ -109,9 +109,14 @@ else{
     </div>
     <div class="switch" style="margin-left:20px;">
         <label class="switch">
+          <?php
+          $switch = ['switch'];
+          $_SESSION['switch'] = $switch;
+          ?>
           <input type="checkbox" style="width:40px;">
-          <span class="slider" onclick="myFunction()"></span>
-        </label>
+          <span class="slider" name="switch" onclick="myFunction()"></span>
+          </label>
+          <input type="submit" name="ok" style="width:10px; height:10px;" value="OK">
     </div>
   </div>
 </header>
